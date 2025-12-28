@@ -1,4 +1,7 @@
 📊 Predição de Churn em Telecomunicações
+
+
+
 Este projeto utiliza Machine Learning para identificar clientes com alta probabilidade de cancelar serviços de telecomunicações (Churn). A solução foi estruturada seguindo boas práticas de engenharia de software, utilizando Programação Orientada a Objetos (POO) e uma pipeline automatizada para facilitar a integração com ferramentas de Business Intelligence como o Power BI.
 
 🛠️ Tecnologias Utilizadas
