@@ -9,7 +9,7 @@ from sklearn.model_selection import cross_val_score
 
 # Carregar dados
 try:
-    df = pd.read_csv("../database.csv")
+    df = pd.read_csv("../data/database.csv")
 except FileNotFoundError:
     print("Erro: O arquivo 'database.csv' não foi encontrado na pasta do projeto!")
     exit()
@@ -49,7 +49,7 @@ else:
 tree_model.gerando_resultado_final(pipe.model, x_test)
 pipe.save_model("modelo_churn_final.pkl")
 print("Modelo persistido com sucesso como 'modelo_churn_final.pkl'!")
-previsor = ChurnPredictor("modelo_churn_final.pkl")
+previsor = ChurnPredictor("../model/modelo_churn_final.pkl")
 
 novo_cliente = pd.DataFrame([{
     'CidadaoSenior': 1, 'Parceiro': 1, 'Dependentes': 0, 'Fidelidade': 1,
