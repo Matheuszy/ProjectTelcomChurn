@@ -1,8 +1,10 @@
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
+import joblib
 
 class ChurnPipeline:
     def __init__(self, depth=5):
+        pd.set_option('future.no_silent_downcasting', True)
         self.model = DecisionTreeClassifier(
             max_depth=depth,
             min_samples_leaf=20,
@@ -49,3 +51,7 @@ class ChurnPipeline:
     def train(self, x, y):
         self.model.fit(x, y)
         print("Modelo treinado com sucesso!")
+
+    def save_model(self, path):
+        joblib.dump(self.model, path)
+        print(f"Modelo persistido com sucesso como '{path}'!")
