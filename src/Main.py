@@ -52,12 +52,12 @@ print("Modelo persistido com sucesso como 'modelo_churn_final.pkl'!")
 previsor = ChurnPredictor("modelo_churn_final.pkl")
 
 novo_cliente = pd.DataFrame([{
-    'CidadaoSenior': 0, 'Parceiro': 1, 'Dependentes': 0, 'Fidelidade': 1,
-    'ServicoTelefonico': 1, 'SuporteTecnico': 0, 'StreamingTV': 0,
-    'MensalCobrado': 70.0, 'TotalCobrado': 70.0,
+    'CidadaoSenior': 1, 'Parceiro': 1, 'Dependentes': 0, 'Fidelidade': 1,
+    'ServicoTelefonico': 0, 'SuporteTecnico': 0, 'StreamingTV': 0,
+    'MensalCobrado': 120.0, 'TotalCobrado': 90.0,
     'MultiplasLinhas_No': 1, 'MultiplasLinhas_No phone service': 0, 'MultiplasLinhas_Yes': 0,
-    'ServicoInternet_DSL': 1, 'ServicoInternet_Fiber optic': 0, 'ServicoInternet_No': 0,
-    'Contrato_Month-to-month': 1, 'Contrato_One year': 0, 'Contrato_Two year': 0
+    'ServicoInternet_DSL': 1, 'ServicoInternet_Fiber optic': 1, 'ServicoInternet_No': 0,
+    'Contrato_Month-to-month': 1, 'Contrato_One year': 1, 'Contrato_Two year': 0
 }])
 
 
