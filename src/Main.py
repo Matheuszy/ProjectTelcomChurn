@@ -47,7 +47,7 @@ if scores.std() < 0.05:
 else:
     print("⚠️ Atenção: O modelo está variando muito dependendo dos dados.")
 tree_model.gerando_resultado_final(pipe.model, x_test)
-pipe.save_model("modelo_churn_final.pkl")
+pipe.save_model("../model/modelo_churn_final.pkl")
 print("Modelo persistido com sucesso como 'modelo_churn_final.pkl'!")
 previsor = ChurnPredictor("../model/modelo_churn_final.pkl")
 

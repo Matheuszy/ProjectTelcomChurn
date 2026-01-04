@@ -13,5 +13,5 @@ class TabelaBi:
 
         # Ordena para facilitar a visão no Power BI
         importancia = importancia.sort_values(by='Peso', ascending=False)
-        importancia.to_csv('importancia_features.csv', index=False)
+        importancia.to_csv('../model/importancia_features.csv', index=False)
         print("Arquivo importancia_features.csv gerado!")
