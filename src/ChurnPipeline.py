@@ -13,7 +13,7 @@ class ChurnPipeline:
         )
 
     def preprocess_data(self, df):
-        # Remoção de colunas (conforme seu notebook)
+        # Remoção de colunas
         colunas_removidas = ["customerID", "gender", "StreamingMovies", "PaperlessBilling",
                              "OnlineBackup", "OnlineSecurity", "DeviceProtection", "PaymentMethod"]
         df = df.drop(colunas_removidas, axis=1, errors='ignore')
@@ -34,13 +34,13 @@ class ChurnPipeline:
             "TotalCharges": "TotalCobrado"
         })
 
-        # Tratamento de valores binários e nulos
+
         colunas_binarias = ["Parceiro", "Dependentes", "ServicoTelefonico", "SuporteTecnico", "StreamingTV"]
         df[colunas_binarias] = df[colunas_binarias].replace({
             'No': 0, 'Yes': 1, 'No internet service': 0, 'No phone service': 0
         })
 
-        # Conversão de tipos (TotalCobrado)
+        # Conversão de tipos
         df['TotalCobrado'] = pd.to_numeric(df['TotalCobrado'], errors='coerce').fillna(0)
 
         # Criação de Dummies

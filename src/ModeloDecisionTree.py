@@ -9,6 +9,6 @@ class ModeloDecisionTree:
         resultado_final = x_test.copy()
         resultado_final['Previsao_Churn'] = model.predict(x_test)
 
-        # Salva o CSV
+
         resultado_final.to_csv('../model/base_com_previsoes.csv', index=False)
         print("Arquivo base_com_previsoes.csv gerado!")
