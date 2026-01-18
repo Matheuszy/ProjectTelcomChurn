@@ -1,58 +1,57 @@
-📊 Predição de Churn em Telecomunicações
+# 📡 Predição de Churn em Telecomunicações com Autenticação Java
 
+Este projeto é uma solução completa que utiliza **Machine Learning** para prever o cancelamento de clientes (Churn) e um **Sistema de Autenticação** robusto para gerenciar o acesso às previsões.
 
+O repositório está organizado em uma arquitetura de microsserviços simples (Monorepo):
+1.  **`python_service`**: API de Inteligência Artificial.
+2.  **`java_auth_system`**: Cliente de autenticação e interface de usuário.
 
-Este projeto utiliza Machine Learning para identificar clientes com alta probabilidade de cancelar serviços de telecomunicações (Churn). A solução foi estruturada seguindo boas práticas de engenharia de software, utilizando Programação Orientada a Objetos (POO) e uma pipeline automatizada para facilitar a integração com ferramentas de Business Intelligence como o Power BI.
+---
 
-🛠️ Tecnologias Utilizadas
-Python 3.10+
+## 🚀 Como Executar o Projeto
 
-Pandas & Numpy: Manipulação e tratamento de dados.
+Para o funcionamento completo, você precisará rodar os dois serviços simultaneamente.
 
-Scikit-Learn: Criação do modelo de Árvore de Decisão.
+### 1. Backend de Inteligência Artificial (Python)
+Este serviço contém o modelo treinado e a API que processa os dados.
 
-Joblib: Persistência do modelo treinado (formato .pkl).
+* **Tecnologias:** Python 3.10+, FastAPI, Scikit-Learn, Pandas.
+* **Como rodar:**
+    ```bash
+    cd python_service
+    pip install -r requirements.txt
+    python main.py  # Ou o comando que você usa para iniciar a API
+    ```
+    *A API ficará disponível em: `http://localhost:8000`*
 
-Power BI: Visualização estratégica dos resultados.
+### 2. Sistema de Autenticação e Cliente (Java)
+Este serviço gerencia o login do usuário e envia os dados para a API Python.
 
-🏗️ Estrutura do Projeto
-O código está dividido em módulos para garantir escalabilidade e fácil manutenção:
+* **Tecnologias:** Java 17+, Spring Boot, Maven.
+* **Como rodar:**
+    ```bash
+    cd java_auth_system
+    ./mvnw spring-boot:run
+    ```
+    *O sistema de login estará disponível em: `http://localhost:8080`*
 
-ChurnPipeline.py: 
-Contém a lógica de limpeza de dados, engenharia de atributos (Dummies, Rename, Replace) e o motor de treinamento.
+---
 
-ModeloDecisionTree.py: 
-Gera a base de dados final com as predições para análise em massa.
+## 🛠️ Arquitetura de Comunicação
 
-TabelaBi.py: 
-Extrai os pesos das variáveis (Feature Importance) para análise de causa raiz.
+O fluxo de dados do projeto funciona da seguinte forma:
+1.  O usuário faz login através do **Java Auth System**.
+2.  Após autenticado, o usuário insere os dados do cliente de telecomunicações.
+3.  O código Java realiza uma requisição `POST` para o **Python Service**.
+4.  O modelo de ML processa os dados e retorna a probabilidade de Churn.
+5.  O Java exibe o resultado final para o usuário.
 
-ChurnPredictor.py: 
-Classe responsável por carregar o modelo salvo e realizar predições em tempo real para novos clientes.
+---
 
-main.py: 
-O orquestrador que executa o fluxo completo do projeto.
+## 📂 Estrutura de Pastas
 
-🚀 Como Executar
-Certifique-se de ter as bibliotecas instaladas:
-
-
-
-pip install -r requirements.txt
-Coloque o arquivo database.csv na raiz do projeto.
-
-Execute o arquivo principal:
-
-
-
-python src/main.py
-📈 Resultados e Integração com BI
-O sistema gera dois arquivos CSV automáticos:
-
-importancia_features.csv: Mostra quais fatores (como tipo de contrato ou fidelidade) mais influenciam a saída do cliente.
-
-base_com_previsoes.csv: Lista detalhada de clientes com a "flag" de risco, pronta para ser usada por times de retenção.
-
-
-🧠 Lógica do Modelo
-Foi utilizado o algoritmo Decision Tree Classifier com ajuste de class_weight='balanced'. Esta escolha foi feita para priorizar o Recall (identificar o máximo de clientes em risco), garantindo que a empresa possa agir preventivamente, mesmo em cenários onde a acurácia global possa variar.
+```text
+ProjectTelcomChurn/
+├── python_service/      # API, Modelos (.pkl) e scripts de treino.
+├── java_auth_system/    # Código-fonte Spring Boot e lógica de segurança.
+└── README.md            # Documentação principal.
